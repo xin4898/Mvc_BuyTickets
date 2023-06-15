@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>登入系統</h2>
+ 
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>請輸入帳號與密碼</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <p>帳號 (註冊時填寫的 Email)</p>
+        @Html.TextBox("txtAccount", "marco@gmail.com", new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <p>
+        <div class="form-group">
+            <p>密碼</p>
+            @Html.TextBox("txtPassword", "1234", new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </p>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="登入" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("取消", "List")
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

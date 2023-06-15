@@ -1,0 +1,31 @@
+﻿@model prjMvcDmeo.Models.CCustomer
+@{
+    ViewBag.Title = "bindingById"; 
+    string photo = "anonymous.jpg";
+
+    if (Model!= null)
+    {
+        photo = Model.fId + ".jpg";
+    }
+}
+
+<h2>顯示客戶資料</h2>
+
+
+<img src="~/Images/@photo" width="240" height="180" />
+@{
+    if (Model== null)
+    {
+        <br />
+        @:沒有符合的資料
+    }
+    else
+    {
+        <p>
+            <h3>@Model.fName</h3>
+        </p>
+        <p>
+            @Model.fPhone 
+        </p>
+    }
+}

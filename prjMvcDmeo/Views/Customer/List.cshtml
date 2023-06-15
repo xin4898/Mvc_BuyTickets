@@ -1,0 +1,53 @@
+﻿@using prjMvcDmeo.Models
+@model List<CCustomer>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>客戶資料一覽表</h2>
+@using (Html.BeginForm())
+{
+    <p>
+    關鍵字 @Html.TextBox("txtKeyword")  <input type="submit" value="查詢" />
+</p>
+}
+
+<a href="~/Customer/Create" class="btn btn-primary">新增客戶</a>
+<p>
+    <table class="table table-hover">
+        <tr>
+            <td>序</td>
+            <td>姓名</td>
+            <td>電話</td>
+            <td>郵件</td>
+            <td>地址</td>
+            <td>密碼</td>
+            <td>編輯</td>
+            <td>刪除</td>
+        </tr>
+        @{int count = 0;
+            foreach (CCustomer c in Model)
+            {
+                count++;
+                <tr>
+                    <td>@count</td>
+                    <td>@c.fName</td>
+                    <td>@c.fPhone</td>
+                    <td>@c.fEmail</td>
+                    <td>@c.fAddress</td>
+                    <td>@c.fPassword</td>
+                    <td>
+                        @Html.ActionLink("修改", "Edit", "Customer", new { id = c.fId }, 
+                       new {@class="btn btn-success" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("刪除", "Delete", "Customer", new { id = c.fId },
+                   new { onclick = "return confirm('確定要刪除嗎?')",Class="btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+
+</p>
